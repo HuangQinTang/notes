@@ -51,3 +51,33 @@ docker image load -i .\nginx.image
 - Dockerfile是用于构建docker镜像的文件
 - Dockerfile里包含了构建镜像所需的“指令”
 - Dockerfile有其特定的语法规则
+
+
+
+##### 构建镜像
+
+```shell
+#会寻找当前目录的Dockerfile文件
+docker image build -t 名字:版本 .
+```
+
+
+
+##### 推送镜像
+
+```shell
+#先登录
+docker login
+
+#推送
+docker image push 用户名/镜像名:版本
+```
+
+
+
+##### 通过commit容器创建镜像
+
+```shell
+docker container commit 容器id 用户名/镜像名:版本号
+```
+

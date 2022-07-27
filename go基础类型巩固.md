@@ -78,6 +78,46 @@
 
 - 字符串是不可变的，要修改他，得转换为[]byte()或[]rune，通过下标索引修改
 
+### 结构体
 
+- 结构体构造函数可变入参
 
+  ```go
+  type User struct {
+  	Id   int
+  	Name string
+  	Age  int
+  }
+  
+  type SetUserFunc func(*User)
+  
+  func NewUser(funs ...SetUserFunc) *User {
+  	u := new(User)
+  	for _, f := range funs {
+  		f(u)
+  	}
+  	return u
+  }
+  
+  func SetUserId(id int) SetUserFunc {
+  	return func(u *User) {
+  		u.Id = id
+  	}
+  }
+  
+  func SetUserName(name string) SetUserFunc {
+  	return func(u *User) {
+  		u.Name = name
+  	}
+  }
+  
+  func main() {
+  	u := NewUser(
+  		SetUserId(10),
+  		SetUserName("小明"),
+  	)
+  	fmt.Println(u)
+  }
+  ```
 
+  

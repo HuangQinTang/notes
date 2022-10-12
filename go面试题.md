@@ -2957,7 +2957,7 @@ i16并没有直接放在bool的后面，而是在bool中填充了一个空白后
 
 ##### 51. Go GC实现原理?
 
-###### 什么是GC？
+###### 什么是GC？[gc思维导图](https://www.processon.com/view/60fbe47a637689719d24c16b?fromnew=1)
 
 垃圾回收也称为GC（Garbage Collection），是一种自动内存管理机制
 

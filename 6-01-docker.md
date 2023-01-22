@@ -182,6 +182,8 @@ docker image build -t 名字:版本 -f 指定的Dockerfile文件名 .
 #先登录
 docker login
 
+#提交前可以打个tag
+docker tag 容器id tag名(通常为 用户名/镜像名:版本号)
 #推送
 docker image push 用户名/镜像名:版本
 ```
@@ -201,12 +203,12 @@ docker container commit 容器id 用户名/镜像名:版本号
 ```dockerfile
 #dockerfile文件
 ...
-VOLUME ["/app"]		#该镜像构建出的容器里/app文件夹下的所有数据将被持久化
+VOLUME ["/app"]		#该镜像构建出的容器里/app文件夹下的所有数据将被持久化到宿主机中/var/lib/docker/volumes/目录下
 ...
 ```
 
 ```dockerfile
-#跑起容器时，要给volume起个名字，并指定好volume的路径，也就是上面的/app，这样便于管理和复用volume（不用-v会默认使用上面dockerfile文件指定的volume路径并随机起名）
+#跑起容器时，要给volume起个名字，并指定好volume的路径，也就是上面的/app，这样便于管理和复用volume（不-v且dockerfile定义了VOLUME会持久化到默认路径且随机起文件名）
 docker run -v test:/app 镜像名...		#这里test是指定的volume名   volume名:路径
 
 #删除容器后，容器数据删除,指定的volume文件夹会保留
